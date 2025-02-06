@@ -1,78 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-      <link rel="stylesheet" href="css/style.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timer</title>
-</head>
-<body>
-  <div class="extra-timer" id="extra-timer">
-    15:00
-  </div>
-
-  <div class="clock">
-    <div class="flip-unit" id="hours">01</div>
-    <div class="flip-unit green" id="minutes">00</div>
-    <div class="flip-unit" id="seconds">00</div>
-  </div>
-
-  <script>
-    function createFlipCard(value) {
-      return `
-        <div class="flip-card">
-          <div class="top">${value}</div>
-          <div class="bottom">${value}</div>
-        </div>
-      `;
-    }
-
-    function updateFlipCard(element, newValue) {
-      const currentFlipCard = element.querySelector('.flip-card');
-      
-      if (currentFlipCard) {
-        currentFlipCard.classList.add('flip');
-        
-        setTimeout(() => {
-          element.innerHTML = createFlipCard(newValue);
-        }, 1000);
-      } else {
-        element.innerHTML = createFlipCard(newValue);
-      }
-    }
-
-    function startCountdowns() {
-      const hourEl = document.getElementById('hours');
-      const minuteEl = document.getElementById('minutes');
-      const secondEl = document.getElementById('seconds');
-      const extraTimerEl = document.getElementById('extra-timer');
-
-      let remainingTimeMain = 3600;
-      let remainingTimeExtra = 901;
-
-      const countdownInterval = setInterval(() => {
-        const hours = Math.floor(remainingTimeMain / 3600);
-        const minutes = Math.floor((remainingTimeMain % 3600) / 60);
-        const seconds = remainingTimeMain % 60;
-        updateFlipCard(hourEl, String(hours).padStart(2, '0'));
-        updateFlipCard(minuteEl, String(minutes).padStart(2, '0'));
-        updateFlipCard(secondEl, String(seconds).padStart(2, '0'));
-
-        const extraMinutes = Math.floor(remainingTimeExtra / 60);
-        const extraSeconds = remainingTimeExtra % 60;
-        extraTimerEl.textContent = `${String(extraMinutes).padStart(2, '0')}:${String(extraSeconds).padStart(2, '0')}`;
-
-        remainingTimeMain--;
-        remainingTimeExtra--;
-
-        if (remainingTimeMain < 0 && remainingTimeExtra < 0) {
-          clearInterval(countdownInterval);
-          alert('Timers completed!');
-        }
-      }, 1000);
-    }
-
-    startCountdowns();
-  </script>
-</body>
+  <head>
+    <link rel="stylesheet" href="css/style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Starttimer</title>
+  </head>
+  <body>
+    <div class="container">
+      <a href="index.html" class="button">Start</a>
+    </div>
+  </body>
 </html>
